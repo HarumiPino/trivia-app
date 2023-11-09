@@ -4,11 +4,11 @@ import StartBtn from "./StartBtn";
 
 
 
-function Home({onClick, categories}) {
+function Home({onClick, categories, setCategory}) {
   return (
     <>
       <Title />
-      <CategoryMenu categories={categories} />
+      <CategoryMenu categories={categories} setCategory={setCategory} />
       <StartBtn onClick={onClick}/>
     </>
   );
