@@ -8,7 +8,6 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [categories, setCategories] = useState([]);
   const [currCategory, setCurrCategory] = useState({});
-  //const [score, setScore] = useState(0);
 
   useEffect(() => {
     console.log("Fetching categories...");
@@ -30,6 +29,7 @@ function App() {
           trivia_categories.push({ id: 0, name: "Any Category" });
         }
         setCategories(trivia_categories);
+        setCurrCategory(trivia_categories[0]);
       });
   }
 

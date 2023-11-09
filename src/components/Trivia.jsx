@@ -2,6 +2,9 @@ import AnswerButton from "./AnswerButtton";
 import CorrectAnswer from "./CorrectAnswer";
 import IncorrectAnswer from "./IncorrectAnswer";
 import HomeBtn from "./HomeBtn";
+import NextBtn from "./NextBtn";
+import RestartBtn from "./RestartBtn";
+import Score from "./Score";
 import { useEffect, useState } from "react";
 
 function Trivia({ category, setGameStarted }) {
@@ -9,7 +12,7 @@ function Trivia({ category, setGameStarted }) {
   const [answers, setAnswers] = useState([]);
   const [answerStatus, setAnswerStatus] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
-
+  const [score, setScore] = useState(0);
   var query = category.id > 0 ? `&category=${category.id}` : "";
 
   useEffect(() => {
@@ -22,9 +25,9 @@ function Trivia({ category, setGameStarted }) {
         return response.json();
       })
       .then(({ results: [data] }) => {
-        //console.log(data);
         setQuestion(decode(data.question));
         setAnswers(formatAnswers(data));
+        setAnswerStatus("");
       });
   }
 
@@ -71,14 +74,25 @@ function Trivia({ category, setGameStarted }) {
             key={ind}
             text={decode(text)}
             isCorrect={isCorrect}
+            setScore={setScore}
+            score={score}
           />
         ))}
       {answerStatus === "correct" && (
-        <CorrectAnswer correctAnswer={correctAnswer} />
+        <>
+          <CorrectAnswer correctAnswer={decode(correctAnswer.text)} />
+          <Score score={score} final={false} />
+          <NextBtn fetchQuestion={fetchQuestion} />
+        </>
       )}
       {answerStatus === "incorrect" && (
-        <IncorrectAnswer correctAnswer={correctAnswer} />
+        <>
+          <IncorrectAnswer correctAnswer={decode(correctAnswer.text)} />
+          <Score score={score} final={true} />
+          <RestartBtn setScore={setScore} fetchQuestion={fetchQuestion} />
+        </>
       )}
+
       <HomeBtn setGameStarted={setGameStarted} />
     </div>
   );
