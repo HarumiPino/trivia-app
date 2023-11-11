@@ -13,6 +13,8 @@ function Trivia({ category, setGameStarted }) {
   const [answerStatus, setAnswerStatus] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [score, setScore] = useState(0);
+  const [difficulty, setDifficulty] = useState("");
+
   var query = category.id > 0 ? `&category=${category.id}` : "";
 
   useEffect(() => {
@@ -26,9 +28,11 @@ function Trivia({ category, setGameStarted }) {
       })
       .then(({ results: [data] }) => {
         setQuestion(decode(data.question));
+        setDifficulty(data.difficulty);
         setAnswers(formatAnswers(data));
         setAnswerStatus("");
-      });
+      })
+      .catch(() => console.log("An error occurred fetching question"));
   }
 
   function decode(str) {
@@ -40,7 +44,7 @@ function Trivia({ category, setGameStarted }) {
   function formatAnswers(data) {
     var answers = [{ text: data.correct_answer, isCorrect: true }];
     setCorrectAnswer(answers[0]);
-    console.log(answers[0]); // DELETE THIS WHEN FINISHED
+    //console.log(answers[0]);
     data.incorrect_answers.forEach((answer) => {
       answers.push({ text: answer, isCorrect: false });
     });
@@ -64,6 +68,9 @@ function Trivia({ category, setGameStarted }) {
   return (
     <div>
       <h2>{category.name}</h2>
+      <h2 className={"difficulty-" + difficulty}>
+        Difficulty: {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+      </h2>
       <div className="question-container">
         <p className="question">{question}</p>
       </div>

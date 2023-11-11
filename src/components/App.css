@@ -2,7 +2,14 @@ body {
     background-color: #282c34;
     font-family: Rubik;
     text-align: center;
-  }
+    background-color: #282c34;
+    opacity: 1;
+    background-color: #1b1e24;
+    opacity: 1;
+    background-image:  linear-gradient(30deg, #212327 12%, transparent 12.5%, transparent 87%, #212327 87.5%, #212327), linear-gradient(150deg, #212327 12%, transparent 12.5%, transparent 87%, #212327 87.5%, #212327), linear-gradient(30deg, #212327 12%, transparent 12.5%, transparent 87%, #212327 87.5%, #212327), linear-gradient(150deg, #212327 12%, transparent 12.5%, transparent 87%, #212327 87.5%, #212327), linear-gradient(60deg, #21232777 25%, transparent 25.5%, transparent 75%, #21232777 75%, #21232777), linear-gradient(60deg, #21232777 25%, transparent 25.5%, transparent 75%, #21232777 75%, #21232777);
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
 
 h1 {
     color: #ffffff;
@@ -13,16 +20,30 @@ h1 {
 }
 
 h2 {
-  color: #ffffff;
-  margin-top: 80px;
+  margin-top: 50px;
   color: rgb(51, 173, 153);
 }
 
 .question {
   color: rgb(255, 255, 255);
   font-size: 2rem;
-  margin-top: 70px;
+  margin-top: 40px;
   padding: 20px;
+}
+
+.difficulty-easy{
+  color: rgb(73, 151, 112);
+  margin-top: 40px;
+}
+
+.difficulty-medium{
+  color: rgb(173, 167, 86);
+  margin-top: 40px;
+}
+
+.difficulty-hard{
+  color: rgb(173, 86, 86);
+  margin-top: 40px;
 }
 
 .question-container{
@@ -115,7 +136,7 @@ select:hover, .select:focus {
 }
 
 .answer-btn:hover {
-	background-color:rgb(47, 168, 148);
+	background-color:rgb(60, 187, 166);
 }
 
 .correct-ans {
@@ -136,13 +157,17 @@ select:hover, .select:focus {
 	color:#ffffff;
 	font-size:1rem;
 	padding:10px 16px;
-  margin: 10px 10px;
+  margin: 0 auto;
+}
+
+.home-btn:hover {
+	background-color:rgb(92, 102, 101);
 }
 
 .home-btn-div {
   width: 100%;
   position: absolute;
-  top: 80%;
+  top: 85%;
 }
 
 .next-btn {
@@ -172,3 +197,11 @@ select:hover, .select:focus {
   font-size: 2rem;
   margin-top: 50px;
 }
+
+.error-msg {
+  color: rgb(173, 86, 86);
+  font-size: 1.5rem;
+}
+
+
+
